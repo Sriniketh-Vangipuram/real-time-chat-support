@@ -23,23 +23,36 @@ const addUser=({room,socketId,username})=>{
 };
 
 //Remove user from room
-const removeUser=(room,socketId)=>{
-    if(!rooms.has(room)){
-        return [];
-    }
+// Remove user from room
+const removeUser = (room, socketId) => {
+  if (!rooms.has(room)) {
+    return {
+      removedUser: null,
+      users: [],
+    };
+  }
 
-    const users=rooms
-                .get(room)
-                .filter((user)=>user.socketId!== socketId);
-    if(users.length===0){
-        rooms.delete(room);
-        return [];
-    }
+  const existingUsers = rooms.get(room);
 
-    rooms.set(room,users);
+  const removedUser = existingUsers.find(
+    (user) => user.socketId === socketId
+  );
 
-    return users;
-}
+  const users = existingUsers.filter(
+    (user) => user.socketId !== socketId
+  );
+
+  if (users.length === 0) {
+    rooms.delete(room);
+  } else {
+    rooms.set(room, users);
+  }
+
+  return {
+    removedUser,
+    users,
+  };
+};
 
 // Get users in a room
 const getUsers=(room)=>{

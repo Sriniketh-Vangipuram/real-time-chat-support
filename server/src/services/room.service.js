@@ -27,12 +27,13 @@ const leaveRoom = (socketId) => {
     return null;
   }
 
-  const users = roomStore.removeUser(room, socketId);
+  const {removedUser,users} = roomStore.removeUser(room, socketId);
 
   analytics.trackEvent("User left chat room");
 
   return {
     room,
+    username:removedUser?.username,
     users,
   };
 };

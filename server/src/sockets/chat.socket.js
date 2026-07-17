@@ -130,7 +130,7 @@ export const registerChatSocket=(io,socket)=>{
         socket.to(result.room).emit(
             SOCKET_EVENTS.USER_LEFT,
             {
-                socketId:socket.id,
+                username:result.username,
             }
         );
 
