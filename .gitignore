@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+
+# Environment variables
+.env
+
+# Build output
+dist
+build
+
+# Logs
+logs
+*.log
+
+# Coverage
+coverage
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Client
+client/dist
+
+# Server
+server/logs
+
+#Test Client
+test-client/
