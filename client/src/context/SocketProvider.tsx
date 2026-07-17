@@ -1,8 +1,19 @@
-import { createContext } from "react";
-import { socket } from "../socket/socket";
+import type {ReactNode} from "react";
+import { SocketContext } from "./SocketContext";
+import {socket} from "../socket/socket";
 
-export interface SocketContextType {
-  socket: typeof socket;
+
+interface Props{
+    children:ReactNode;
 }
 
-export const SocketContext = createContext<SocketContextType | null>(null);
+export function SocketProvider({
+    children,
+}:Props){
+    return(
+        <SocketContext.Provider value={{socket,}}>
+            {children}
+        </SocketContext.Provider>
+    )
+};
+
